@@ -3,7 +3,7 @@ class Fftui < Formula
   homepage "https://github.com/wolffshots/fftui"
   url "https://github.com/wolffshots/fftui/archive/refs/tags/v0.5.0.tar.gz"
   sha256 "038226f98faa2c671b0b6c3e11e329ccffce221026d59f70e6db98e4bbf9e7b1"
-  # Upstream ships no LICENSE file, so no `license` field is set.
+  license "MIT"
   head "https://github.com/wolffshots/fftui.git", branch: "main"
 
   depends_on "go" => :build
