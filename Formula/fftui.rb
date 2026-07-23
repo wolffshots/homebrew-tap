@@ -1,8 +1,8 @@
 class Fftui < Formula
   desc "Terminal UI for tracking Future Forex arbitrage cycle returns"
   homepage "https://github.com/wolffshots/fftui"
-  url "https://github.com/wolffshots/fftui/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "038226f98faa2c671b0b6c3e11e329ccffce221026d59f70e6db98e4bbf9e7b1"
+  url "https://github.com/wolffshots/fftui/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "5feac1bcf39e8bbbcc244d44a402d2764ca19585928333a085ee7e8162b2fc6b"
   license "MIT"
   head "https://github.com/wolffshots/fftui.git", branch: "main"
 
@@ -15,9 +15,25 @@ class Fftui < Formula
     system "go", "build", *std_go_args(ldflags: ldflags)
   end
 
+  def caveats
+    <<~EOS
+      Create your config file (~/.config/fftui/config.env) with:
+        fftui --init-config
+      Then edit it with your credentials. See the README for all keys:
+        https://github.com/wolffshots/fftui#credentials
+    EOS
+  end
+
   test do
     # `--version` prints "fftui v<version>" and exits 0 without needing any
     # FF_* config or network access, so it is safe as a smoke test.
     assert_match "fftui v#{version}", shell_output("#{bin}/fftui --version")
+
+    # `--init-config` writes a template to $XDG_CONFIG_HOME/fftui/config.env
+    # (0600). Point HOME/XDG_CONFIG_HOME at testpath so it stays sandboxed.
+    ENV["HOME"] = testpath
+    ENV["XDG_CONFIG_HOME"] = testpath/".config"
+    system bin/"fftui", "--init-config"
+    assert_predicate testpath/".config/fftui/config.env", :exist?
   end
 end
