@@ -34,6 +34,6 @@ class Fftui < Formula
     ENV["HOME"] = testpath
     ENV["XDG_CONFIG_HOME"] = testpath/".config"
     system bin/"fftui", "--init-config"
-    assert_predicate testpath/".config/fftui/config.env", :exist?
+    assert_path_exists testpath/".config/fftui/config.env"
   end
 end
