@@ -1,8 +1,8 @@
 class Fftui < Formula
   desc "Terminal UI for tracking Future Forex arbitrage cycle returns"
   homepage "https://github.com/wolffshots/fftui"
-  url "https://github.com/wolffshots/fftui/archive/refs/tags/v0.7.0.tar.gz"
-  sha256 "730a5c08b752cc82f2e6a47a0445d4bd6dd756c1692686dc8759cfdaa4955d32"
+  url "https://github.com/wolffshots/fftui/archive/refs/tags/v0.7.1.tar.gz"
+  sha256 "a78145d440c6b7fb0be66909d61f58b5a1a1ac045f4297879321799a74cfce62"
   license "MIT"
   head "https://github.com/wolffshots/fftui.git", branch: "main"
 
