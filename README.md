@@ -35,3 +35,39 @@ full configuration and usage documentation.
 brew update
 brew upgrade fftui
 ```
+
+## clusage
+
+A terminal UI for watching Claude Code rate limit windows.
+
+### Install
+
+```sh
+brew install wolffshots/tap/clusage
+```
+
+Or tap first, then install:
+
+```sh
+brew tap wolffshots/tap
+brew install clusage
+```
+
+The formula builds `clusage` from source at its tagged release, so it works on
+**macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is pulled in
+automatically as a build-time dependency.
+
+### Configuration
+
+Store your Claude Code OAuth token once with `clusage setup`, which writes it
+to the login keychain. On Linux, set `CLAUDE_CODE_OAUTH_TOKEN` instead. Settings
+live in `~/.config/clusage/config.json`. See the
+[clusage repository](https://github.com/wolffshots/clusage) for the full
+configuration and usage documentation.
+
+### Upgrade
+
+```sh
+brew update
+brew upgrade clusage
+```
