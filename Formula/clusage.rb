@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "833736dc6c5f772b76fbbbaa6ca36f77e2a3911d3ec2c4853d2a134108efd3cb"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "57f3cacb9d68fd68009d9ff7fe4e9fab48f08dbf2c54c27ebf8d03b6f3817164"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
@@ -10,7 +10,7 @@ class Clusage < Formula
 
   def install
     # Match the upstream release build: strip symbols/DWARF and inject the
-    # version (upstream tags with a leading "v", e.g. v0.2.0).
+    # version (upstream tags with a leading "v", e.g. v0.3.0).
     ldflags = "-s -w -X main.version=v#{version}"
     system "go", "build", *std_go_args(ldflags: ldflags)
   end
