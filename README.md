@@ -36,6 +36,11 @@ brew update
 brew upgrade fftui
 ```
 
+Current release: **v0.13.0**. It dates the fixed per-cycle fee to the Capitec
+SWIFT/admin fee cut (R500 to R350) that takes effect on **1 October 2026**.
+Cycles starting on or after that date model R380 per cycle instead of R530.
+Earlier cycles keep the R530 they were billed.
+
 ## clusage
 
 A terminal UI for watching Claude Code rate limit windows.
