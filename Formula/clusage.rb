@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v0.3.0.tar.gz"
-  sha256 "57f3cacb9d68fd68009d9ff7fe4e9fab48f08dbf2c54c27ebf8d03b6f3817164"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "02948162299e8a641dc299edf85c425df29ac184aa0d7cd3137df01075839dd6"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
@@ -13,6 +13,12 @@ class Clusage < Formula
     # version (upstream tags with a leading "v", e.g. v0.3.0).
     ldflags = "-s -w -X main.version=v#{version}"
     system "go", "build", *std_go_args(ldflags: ldflags)
+
+    # The Claude Code guard rail hook. Homebrew must not write to the user's
+    # home directory, so `clusage hook install` registers this copy from here.
+    # A `brew upgrade` replaces the file in place, and the path in
+    # settings.json stays valid.
+    pkgshare.install "hooks"
   end
 
   def caveats
@@ -23,6 +29,11 @@ class Clusage < Formula
 
       On Linux, set CLAUDE_CODE_OAUTH_TOKEN instead: `clusage setup` uses the
       macOS `security` command.
+
+      To pause Claude Code tool calls while your 5h limit is high, and stop
+      them once a 7d limit is nearly spent, register the guard rail hook:
+        clusage hook install
+      Check it with `clusage hook status`, remove it with `clusage hook uninstall`.
 
       Config lives at ~/.config/clusage/config.json. Set `fetch_cron` there to
       refresh automatically while the TUI is open. See:
@@ -38,7 +49,14 @@ class Clusage < Formula
     # An unknown command lists the real commands and exits 1. This exercises
     # the dispatch without opening the TUI, which needs a TTY the sandbox does
     # not have, and without `usage`, which would try to reach the API.
-    assert_match "want: tui, setup, usage",
+    assert_match "unknown command",
                  shell_output("#{bin}/clusage definitely-not-a-command 2>&1", 1)
+
+    # The guard rail script ships beside the binary, and the `hook` command
+    # rejects an unknown action. Neither check runs the script or reads the
+    # real settings.json, which the test sandbox blocks.
+    assert_path_exists pkgshare/"hooks/clusage-guard.sh"
+    assert_match "unknown hook action",
+                 shell_output("#{bin}/clusage hook nope 2>&1", 1)
   end
 end
