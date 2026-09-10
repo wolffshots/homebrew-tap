@@ -23,7 +23,9 @@ class Clusage < Formula
 
   def caveats
     <<~EOS
-      Store your Claude Code OAuth token in the login keychain with:
+      Generate a Claude Code OAuth token (needs a Claude subscription):
+        claude setup-token
+      Store it in the login keychain with:
         clusage setup
       Then run `clusage` for the TUI, or `clusage usage` for one-shot output.
 
