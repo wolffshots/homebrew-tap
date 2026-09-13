@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v1.1.1.tar.gz"
-  sha256 "afff6e3c1aeb508ac57efa001bfcae2ebd3d74f3b7e0e8da687e60f870cc1a6e"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.0.0.tar.gz"
+  sha256 "53dfe6d5b6c154529000daf78262e76b4f86057c1d4a43848e6b195f98a9e750"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
@@ -23,14 +23,20 @@ class Clusage < Formula
 
   def caveats
     <<~EOS
-      Generate a Claude Code OAuth token (needs a Claude subscription):
-        claude setup-token
-      Store it in the login keychain with:
-        clusage setup
-      Then run `clusage` for the TUI, or `clusage usage` for one-shot output.
+      clusage needs a source. Set "source" in ~/.config/clusage/config.json to
+      statusline (recommended), usage, probe or auto. There is no default.
 
-      On Linux, set CLAUDE_CODE_OAUTH_TOKEN instead: `clusage setup` uses the
-      macOS `security` command.
+      Upgrading from 1.x: set "source" before anything else. Until it is set,
+      `clusage usage` fails, and the guard rail hook denies every tool call.
+      1.x always sent a probe call. Set "source": "probe" to keep that.
+
+      For statusline, point the Claude Code status line at clusage:
+        clusage help statusline
+      For usage, probe or auto, log in with `claude`. clusage reads that login:
+        clusage help setup
+
+      Then run `clusage` for the TUI, or `clusage usage` for one-shot output.
+      `clusage help` lists every command.
 
       To pause Claude Code tool calls while your 5h limit is high, and stop
       them once a 7d limit is nearly spent, register the guard rail hook:
@@ -53,6 +59,9 @@ class Clusage < Formula
     # not have, and without `usage`, which would try to reach the API.
     assert_match "unknown command",
                  shell_output("#{bin}/clusage definitely-not-a-command 2>&1", 1)
+
+    # Help prints without a config, a token or a TTY.
+    assert_match "Getting started", shell_output("#{bin}/clusage help")
 
     # The guard rail script ships beside the binary, and the `hook` command
     # rejects an unknown action. Neither check runs the script or reads the
