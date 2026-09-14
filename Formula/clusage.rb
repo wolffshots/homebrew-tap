@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.0.3.tar.gz"
-  sha256 "09124285d14fbb5d34e7b6503614ea89932960a1b92e945c7280da37c6122bd2"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.1.0.tar.gz"
+  sha256 "aeec6d01854bb1de5415cd3ddc081593715c8c0708a7d94c5a25e8295b675692"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
@@ -46,6 +46,8 @@ class Clusage < Formula
       Config lives at ~/.config/clusage/config.json. Set `fetch_cron` there to
       refresh automatically while the TUI is open. See:
         https://github.com/wolffshots/clusage#scheduled-fetches
+
+      If a reading fails, run `clusage doctor` for a diagnosis with suggestions.
     EOS
   end
 
