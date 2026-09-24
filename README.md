@@ -79,3 +79,40 @@ configuration and usage documentation.
 brew update
 brew upgrade clusage
 ```
+
+## patreon-posts
+
+A terminal UI for browsing Patreon posts, with SQLite caching and YouTube link
+extraction.
+
+### Install
+
+```sh
+brew install wolffshots/tap/patreon-posts
+```
+
+Or tap first, then install:
+
+```sh
+brew tap wolffshots/tap
+brew install patreon-posts
+```
+
+The formula builds `patreon-posts` from source at its tagged release, so it
+works on **macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is
+pulled in automatically as a build-time dependency.
+
+### Configuration
+
+Settings live in `~/.patreon-posts.json`: your Patreon cookies (or a
+`cookie_source` that reads them from a Firefox-family browser) and the
+campaigns to follow. See the
+[patreon-posts repository](https://github.com/wolffshots/patreon-posts#configuration)
+for the full configuration and usage documentation.
+
+### Upgrade
+
+```sh
+brew update
+brew upgrade patreon-posts
+```
