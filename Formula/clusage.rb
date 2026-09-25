@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.2.2.tar.gz"
-  sha256 "8852bd8cf37e06711628d3b768af711903e1f52b00ad14517166fcf479373922"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.3.0.tar.gz"
+  sha256 "087a7a81251e09046fcbdbe5e6d07feea3258f9bf4b3c155a71ed6d89342e515"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
@@ -14,10 +14,9 @@ class Clusage < Formula
     ldflags = "-s -w -X main.version=v#{version}"
     system "go", "build", *std_go_args(ldflags: ldflags)
 
-    # The Claude Code guard rail hook. Homebrew must not write to the user's
-    # home directory, so `clusage hook install` registers this copy from here.
-    # A `brew upgrade` replaces the file in place, and the path in
-    # settings.json stays valid.
+    # The legacy guard rail script. The hook now runs as `clusage hook run`,
+    # and this wrapper keeps older settings.json entries working until the
+    # user reruns `clusage hook install`.
     pkgshare.install "hooks"
   end
 
@@ -42,6 +41,8 @@ class Clusage < Formula
       them once a 7d limit is nearly spent, register the guard rail hook:
         clusage hook install
       Check it with `clusage hook status`, remove it with `clusage hook uninstall`.
+      Upgrading from 2.2 or older: rerun `clusage hook install`, so settings.json
+      runs the binary and not the old script.
 
       Config lives at ~/.config/clusage/config.json. Set `fetch_cron` there to
       refresh automatically while the TUI is open. See:
@@ -65,9 +66,9 @@ class Clusage < Formula
     # Help prints without a config, a token or a TTY.
     assert_match "Getting started", shell_output("#{bin}/clusage help")
 
-    # The guard rail script ships beside the binary, and the `hook` command
-    # rejects an unknown action. Neither check runs the script or reads the
-    # real settings.json, which the test sandbox blocks.
+    # The legacy wrapper script ships beside the binary, and the `hook` command
+    # rejects an unknown action. Neither check runs the hook or reads the real
+    # settings.json, which the test sandbox blocks.
     assert_path_exists pkgshare/"hooks/clusage-guard.sh"
     assert_match "unknown hook action",
                  shell_output("#{bin}/clusage hook nope 2>&1", 1)
