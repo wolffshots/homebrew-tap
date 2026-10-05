@@ -1,8 +1,8 @@
 class Clusage < Formula
   desc "Terminal UI for watching Claude Code rate limit windows"
   homepage "https://github.com/wolffshots/clusage"
-  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.5.1.tar.gz"
-  sha256 "b50c7d675fab06c5f766523655c7c5a122bbc1c1ed7e0efd91009c9d052d4ea6"
+  url "https://github.com/wolffshots/clusage/archive/refs/tags/v2.5.2.tar.gz"
+  sha256 "de234aa22a57df48733a5ddc0c0d690a9a65144cf988db859d8a38483a57d9c6"
   license "MIT"
   head "https://github.com/wolffshots/clusage.git", branch: "main"
 
