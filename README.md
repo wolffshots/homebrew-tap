@@ -116,3 +116,38 @@ for the full configuration and usage documentation.
 brew update
 brew upgrade patreon-posts
 ```
+
+## ndcli
+
+A command-line client for the NoteDiscovery REST API.
+
+### Install
+
+```sh
+brew install wolffshots/tap/ndcli
+```
+
+Or tap first, then install:
+
+```sh
+brew tap wolffshots/tap
+brew install ndcli
+```
+
+The formula builds `ndcli` from source at its tagged release, so it works on
+**macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is pulled in
+automatically as a build-time dependency.
+
+### Configuration
+
+Set `NOTEDISCOVERY_URL` to the base URL of your NoteDiscovery server. The
+default is `http://localhost:8000`. See the
+[ndcli repository](https://github.com/wolffshots/ndcli#configuration) for the
+full configuration and usage documentation.
+
+### Upgrade
+
+```sh
+brew update
+brew upgrade ndcli
+```
