@@ -151,3 +151,39 @@ full configuration and usage documentation.
 brew update
 brew upgrade ndcli
 ```
+
+## himaplaya
+
+A Bubble Tea TUI for the himalaya mail client.
+
+### Install
+
+```sh
+brew install wolffshots/tap/himaplaya
+```
+
+Or tap first, then install:
+
+```sh
+brew tap wolffshots/tap
+brew install himaplaya
+```
+
+The formula builds `himaplaya` from source at its tagged release, so it works
+on **macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is pulled
+in automatically as a build-time dependency, and `himalaya` is installed as a
+runtime dependency.
+
+### Configuration
+
+`himaplaya` has no settings of its own. It shows the accounts of your himalaya
+configuration; set one up with `himalaya configure`. See the
+[himaplaya repository](https://github.com/wolffshots/himaplaya#accounts) for
+the account setup and the terminal requirements.
+
+### Upgrade
+
+```sh
+brew update
+brew upgrade himaplaya
+```
