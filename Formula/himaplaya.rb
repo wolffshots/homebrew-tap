@@ -1,8 +1,8 @@
 class Himaplaya < Formula
   desc "Bubble Tea TUI for the himalaya mail client"
   homepage "https://github.com/wolffshots/himaplaya"
-  url "https://github.com/wolffshots/himaplaya/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "4c4a4fce9265a12ad1a6a2a30926bce174bbd3ccba3578954b055075d8cb5592"
+  url "https://github.com/wolffshots/himaplaya/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "9226089c9373352e2ef20166f48b2abfa5962469ff286de4eb774180ae734222"
   license "MIT"
   head "https://github.com/wolffshots/himaplaya.git", branch: "main"
 
