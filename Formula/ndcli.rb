@@ -1,8 +1,8 @@
 class Ndcli < Formula
   desc "Command-line client for the NoteDiscovery REST API"
   homepage "https://github.com/wolffshots/ndcli"
-  url "https://github.com/wolffshots/ndcli/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "59274334a390906a6ccdd159d1e0a056693dc41d303923d7527927fab1740127"
+  url "https://github.com/wolffshots/ndcli/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "287cb8b4be67afe319f05fbb76ebda84be164f7c64d6db696bcd4415ba1b0662"
   license "MIT"
   head "https://github.com/wolffshots/ndcli.git", branch: "main"
 
