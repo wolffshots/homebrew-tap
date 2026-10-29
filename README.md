@@ -152,38 +152,15 @@ brew update
 brew upgrade ndcli
 ```
 
-## himaplaya
+## himaplaya (deprecated)
 
-A Bubble Tea TUI for the himalaya mail client.
+A Bubble Tea TUI for the himalaya mail client. The formula is deprecated
+because the upstream repository is archived. Brew still installs it, but it
+gets no more releases. Use [matcha](https://github.com/floatpane/matcha) as a
+terminal mail client instead.
 
-### Install
-
-```sh
-brew install wolffshots/tap/himaplaya
-```
-
-Or tap first, then install:
+To remove it:
 
 ```sh
-brew tap wolffshots/tap
-brew install himaplaya
-```
-
-The formula builds `himaplaya` from source at its tagged release, so it works
-on **macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is pulled
-in automatically as a build-time dependency, and `himalaya` is installed as a
-runtime dependency.
-
-### Configuration
-
-`himaplaya` has no settings of its own. It shows the accounts of your himalaya
-configuration; set one up with `himalaya configure`. See the
-[himaplaya repository](https://github.com/wolffshots/himaplaya#accounts) for
-the account setup and the terminal requirements.
-
-### Upgrade
-
-```sh
-brew update
-brew upgrade himaplaya
+brew uninstall himaplaya
 ```

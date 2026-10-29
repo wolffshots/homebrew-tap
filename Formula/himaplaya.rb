@@ -6,6 +6,8 @@ class Himaplaya < Formula
   license "MIT"
   head "https://github.com/wolffshots/himaplaya.git", branch: "main"
 
+  deprecate! date: "2026-10-29", because: :repo_archived
+
   depends_on "go" => :build
   depends_on "himalaya"
 
