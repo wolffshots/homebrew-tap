@@ -1,8 +1,8 @@
 class Coverfill < Formula
   desc "Make CrossPoint e-reader sleep covers fill the screen with mirrored edges"
   homepage "https://github.com/wolffshots/crosspoint-coverfill"
-  url "https://github.com/wolffshots/crosspoint-coverfill/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "dfea60e32cafd4a9de5d26af6f95ec3b8dcd4524ecd707d5a8d2b1cd6c3bb0c5"
+  url "https://github.com/wolffshots/crosspoint-coverfill/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "55743296b1b22dbc35998515dc816910d1d4c3b8cc9c0b45914e60108ec97e58"
   license "MIT"
   head "https://github.com/wolffshots/crosspoint-coverfill.git", branch: "main"
 
