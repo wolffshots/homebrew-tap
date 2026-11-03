@@ -2,6 +2,11 @@
 
 A [Homebrew](https://brew.sh) tap for [wolffshots](https://github.com/wolffshots) tools.
 
+The Autobump workflow runs every 4 hours. It moves each formula to the latest
+GitHub release of its upstream repository with `bin/bump.sh`. It commits a bump
+only after the formula builds from source, passes `brew test` and passes
+`brew audit --strict --online`. Deprecated formulas are not bumped.
+
 ## fftui
 
 A terminal UI for tracking Future Forex arbitrage cycle returns.
