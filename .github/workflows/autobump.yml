@@ -1,0 +1,51 @@
+name: Autobump
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 4 hours, like the Excavator of wolffshots/scoop-bucket.
+    - cron: '50 */4 * * *'
+
+permissions:
+  contents: write # push the formula bumps to main
+
+concurrency:
+  group: autobump
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Taps this checkout as wolffshots/tap, so brew builds the edited formulas.
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Find new releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash bin/bump.sh | tee bumped.txt
+
+      # Commit a bump only after it builds, passes its test and passes audit.
+      # A failed bump is reverted, and the job fails at the end so it shows.
+      - name: Test and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          failed=0
+          while read -r name version; do
+            # </dev/null keeps brew from reading the rest of bumped.txt.
+            if brew install --build-from-source "wolffshots/tap/$name" </dev/null &&
+               brew test "wolffshots/tap/$name" </dev/null &&
+               brew audit --strict --online "wolffshots/tap/$name" </dev/null; then
+              git commit -m "chore($name): update to version $version" "Formula/$name.rb"
+            else
+              echo "::error::$name $version failed install, test or audit"
+              git checkout -- "Formula/$name.rb"
+              failed=1
+            fi
+          done < bumped.txt
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          exit "$failed"
