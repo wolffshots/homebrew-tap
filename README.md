@@ -152,6 +152,43 @@ brew update
 brew upgrade ndcli
 ```
 
+## coverfill
+
+Makes the book cover fill the whole sleep screen on a CrossPoint e-reader,
+such as an Xteink X4. It pads each cached sleep cover with mirrored edges over
+the File Transfer web server of the device.
+
+### Install
+
+```sh
+brew install wolffshots/tap/coverfill
+```
+
+Or tap first, then install:
+
+```sh
+brew tap wolffshots/tap
+brew install coverfill
+```
+
+The formula builds `coverfill` from source at its tagged release, so it works
+on **macOS** (Intel and Apple Silicon) and **Linux**. A Go toolchain is pulled
+in automatically as a build-time dependency.
+
+### Usage
+
+Start File Transfer on the e-reader, then run `coverfill -host <address> -n`
+for a dry run. See the
+[crosspoint-coverfill repository](https://github.com/wolffshots/crosspoint-coverfill#use)
+for the full usage documentation.
+
+### Upgrade
+
+```sh
+brew update
+brew upgrade coverfill
+```
+
 ## himaplaya (deprecated)
 
 A Bubble Tea TUI for the himalaya mail client. The formula is deprecated
