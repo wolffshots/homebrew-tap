@@ -31,6 +31,8 @@ jobs:
       # Commit a bump only after it builds, passes its test and passes audit.
       # A failed bump is reverted, and the job fails at the end so it shows.
       - name: Test and commit
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -47,5 +49,7 @@ jobs:
               failed=1
             fi
           done < bumped.txt
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          # setup-homebrew moves this checkout into the Homebrew taps folder,
+          # which drops the credentials of actions/checkout. Push with the token.
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:$GITHUB_REF_NAME"
           exit "$failed"
