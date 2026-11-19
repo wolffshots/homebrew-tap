@@ -1,8 +1,8 @@
 class PatreonPosts < Formula
   desc "Terminal UI for browsing Patreon posts and extracting YouTube links"
   homepage "https://github.com/wolffshots/patreon-posts"
-  url "https://github.com/wolffshots/patreon-posts/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "a2afbd50121fd50b060fb14469d7b3212a2cedbdd80403585feff33021679151"
+  url "https://github.com/wolffshots/patreon-posts/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "7eab857832631e8ac948576dfc8ad2881dcda08dc3cab55422d75f37cb240b79"
   license "MIT"
   head "https://github.com/wolffshots/patreon-posts.git", branch: "main"
 
